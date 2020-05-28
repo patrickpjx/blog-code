@@ -1,0 +1,11 @@
+{
+	"folders": [{
+		"path": "."
+	}],
+	"settings": {
+		"deno.enable": true,
+		"powermode.enabled": true,
+		"powermode.enableShake": false, //这个代表桌面是否震动
+		"tslint.jsEnable": true
+	}
+}
