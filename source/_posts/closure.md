@@ -85,4 +85,17 @@ How: Unlike a plain function, a closure allows the function to access those capt
 
 
 
+function foo() {
+  var a = { x: 1, y: 2 }; // 对象
+  var b = 10; // 基本数据类型
+  function bar(param) {
+    return param+ b;
+  }
+  return bar;
+}
+var b = 20;
+var func = foo();
+console.log(func(1));
+
+
 
