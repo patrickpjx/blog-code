@@ -1,7 +1,9 @@
 ---
 title: Http--超文本传输协议
 date: 2020-05-28 22:16:48
-tags:
+tags: http
+categories: 
+  - network
 ---
 
 ## HTTP的特点  
