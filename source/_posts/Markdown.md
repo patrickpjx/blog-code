@@ -1,8 +1,8 @@
 ---
 title: Markdown
 date: 2020-05-28 22:29:48
-tags: hexo
-categories: hexo
+tags: 
+  - knowledge fragment
 top_img: https://raw.githubusercontent.com/patrickpjx/i/master/img/1200px-Markdown-mark.svg.png
 cover: https://raw.githubusercontent.com/patrickpjx/i/master/img/images.png
 
