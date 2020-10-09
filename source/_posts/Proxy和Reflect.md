@@ -20,4 +20,29 @@ Reflection: In computer science, reflection is the ability of a process to exami
 
 1.三个基本概念handler，traps，target（处理器，捕获器，被代理的对象）；处理器（一个通常以函数作为属性的对象，各属性中的函数分别定义了在执行各种操作时代理 p 的行为（捕捉器）。）
 2.在使用Proxy进行拦截时，如何调用原方法？此时就可以用到Reflect 对象，这个就是 Proxy 的 handler 的各种捕捉器分别对应 Reflect 上的同名方法。
-
+traps(对于trap的翻译，部分文章翻译成陷阱....23333):
+handler.getPrototypeOf()
+Object.getPrototypeOf 方法的捕捉器。
+handler.setPrototypeOf()
+Object.setPrototypeOf 方法的捕捉器。
+handler.isExtensible()
+Object.isExtensible 方法的捕捉器。
+handler.preventExtensions()
+Object.preventExtensions 方法的捕捉器。
+handler.getOwnPropertyDescriptor()
+Object.getOwnPropertyDescriptor 方法的捕捉器。
+handler.defineProperty()
+Object.defineProperty 方法的捕捉器。
+handler.has()
+in 操作符的捕捉器。
+handler.get()
+属性读取操作的捕捉器。
+handler.set()
+属性设置操作的捕捉器。
+handler.deleteProperty()
+delete 操作符的捕捉器。
+handler.ownKeys()
+Object.getOwnPropertyNames 方法和 Object.getOwnPropertySymbols 方法的捕捉器。
+handler.apply()
+函数调用操作的捕捉器。
+handler.construct()
