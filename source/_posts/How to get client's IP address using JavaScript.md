@@ -11,4 +11,4 @@ getIPs().then(res => {console.log(ip)})
 
 ``````
 
-随便把 Google Analytic 加上
+Add Google Analytic too.
