@@ -1,11 +1,19 @@
 {
-	"folders": [{
-		"path": "."
-	}],
-	"settings": {
-		"deno.enable": true,
-		"powermode.enabled": true,
-		"powermode.enableShake": false, //这个代表桌面是否震动
-		"tslint.jsEnable": true
-	}
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "powermode.enabled": true,
+        "powermode.enableShake": false, //这个代表桌面是否震动
+        "files.eol": "\n",
+        "editor.tabSize": 4,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "eslint.validate": ["javascript", "javascriptreact", "vue", "typescript", "typescriptreact"],
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": true
+        }
+    }
 }
