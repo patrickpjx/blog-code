@@ -16,9 +16,64 @@ ssh-keygen [-q] [-b bits] [-t type] [-N new_passphrase] [-C comment] [-f output_
 	-N：指定生成秘钥公钥对的密码，不指定会在生成过程中要求输入。
 	-C：指定秘钥公钥对的说明信息
 	-f：指定生成密钥的目录和文件名，不指定会在生成过程中要求输入。
-
-in Mac to get SSH_KEY:
-pbcopy < ~/.ssh/id_rsa.pub
 ```
 
-## TEST
+in Mac to get SSH_KEY:
+
+```
+pbcopy < ~/.ssh/id_rsa
+```
+
+## GitHud add secrets and Deploy keys
+
+```
+Settings -> add Scerets ->add Deploy keys
+```
+
+## hexo + coding page + github
+
+```
+name: Hexo Deploy
+
+on:
+    push:
+        branches:
+            - develop
+	jobs:
+		build:
+			runs-on: ubuntu-latest
+			if: github.event.repository.owner.id == github.event.sender.id
+
+			steps:
+				- name: Checkout source
+				uses: actions/checkout@v2
+				with:
+					ref: develop
+
+				- name: Setup Node.js
+				uses: actions/setup-node@v1
+				with:
+					node-version: '12'
+
+				- name: Setup Hexo
+				env:
+					ACTION_DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_KEY }}
+				run: |
+					mkdir -p ~/.ssh/
+					echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
+					chmod 700 ~/.ssh
+					chmod 600 ~/.ssh/id_rsa
+					ssh-keyscan e.coding.net >> ~/.ssh/known_hosts
+					git config --global user.email "416361073@qq.com"
+					git config --global user.name "patrick"
+					npm install hexo-cli -g
+					npm install
+
+				- name: Deploy
+				run: |
+					hexo clean
+					hexo generate
+					hexo deploy
+```
+
+## miniprogram + github actions
