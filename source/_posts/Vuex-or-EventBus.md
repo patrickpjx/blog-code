@@ -26,3 +26,9 @@ tags:
     性能问题？其实提供动态管理模块
     更为更为规范，严格，首推
 ```
+
+## Vuex + Typescript
+
+```
+vuex-module-decorators
+```
