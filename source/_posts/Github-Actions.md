@@ -116,3 +116,5 @@ jobs:
               run: npx mp-ci upload ./dist/build/mp-weixin --pkp=./private.key
 
 ```
+
+but，速度好慢
