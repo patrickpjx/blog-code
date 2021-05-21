@@ -34,7 +34,6 @@ Settings -> add Scerets -> add Deploy keys
 
 ```
 name: Hexo Deploy
-
 on:
     push:
         branches:
@@ -43,18 +42,15 @@ on:
 		build:
 			runs-on: ubuntu-latest
 			if: github.event.repository.owner.id == github.event.sender.id
-
 			steps:
 				- name: Checkout source
 				uses: actions/checkout@v2
 				with:
 					ref: develop
-
 				- name: Setup Node.js
 				uses: actions/setup-node@v1
 				with:
 					node-version: '12'
-
 				- name: Setup Hexo
 				env:
 					ACTION_DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_KEY }}
@@ -70,6 +66,7 @@ on:
 					npm install
 
 				- name: Deploy
+
 				run: |
 					hexo clean
 					hexo generate
@@ -117,4 +114,4 @@ jobs:
 
 ```
 
-but，速度好慢
+## but，速度好慢

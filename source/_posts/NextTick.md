@@ -7,7 +7,11 @@ tags:
 ## $nextTick
 
 dom 更新后，延迟回调中获取更新后的 dom
+
+```
 (setTimeout task 中兜底)
+Vue 在内部对异步队列尝试使用原生的 Promise.then、MutationObserver 和 setImmediate，如果执行环境不支持，则会采用 setTimeout(fn, 0) 代替。
+```
 
 ## event loop
 
@@ -44,6 +48,8 @@ new Promise(function (resolve) {
     console.log(5);
 });
 console.log(3);
+
+//（Promise executor）立即执行
 ```
 
 out: 1 2 3 5 4
