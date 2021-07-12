@@ -81,41 +81,41 @@ on:
             - develop
 jobs:
     build:
-		runs-on: ubuntu-latest
+	runs-on: ubuntu-latest
 
-		if: github.event.repository.owner.id == github.event.sender.id
+	if: github.event.repository.owner.id == github.event.sender.id
 
-		steps:
-			- name: Checkout source
-			uses: actions/checkout@v2
-			with:
-				ref: develop
+	steps:
+		- name: Checkout source
+		uses: actions/checkout@v2
+		with:
+			ref: develop
 
-			- name: Setup Node.js
-			uses: actions/setup-node@v1
-			with:
-				node-version: '12'
+		- name: Setup Node.js
+		uses: actions/setup-node@v1
+		with:
+			node-version: '12'
 
-			- name: Setup Hexo
-			env:
-				ACTION_DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_KEY }}
-			run: |
-				mkdir -p ~/.ssh/
-				echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
-				chmod 700 ~/.ssh
-				chmod 600 ~/.ssh/id_rsa
-				ssh-keyscan e.coding.net >> ~/.ssh/known_hosts
-				git config --global user.email "416361073@qq.com"
-				git config --global user.name "patrick"
-				npm install hexo-cli -g
-				npm install
+		- name: Setup Hexo
+		env:
+			ACTION_DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_KEY }}
+		run: |
+			mkdir -p ~/.ssh/
+			echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
+			chmod 700 ~/.ssh
+			chmod 600 ~/.ssh/id_rsa
+			ssh-keyscan e.coding.net >> ~/.ssh/known_hosts
+			git config --global user.email "416361073@qq.com"
+			git config --global user.name "patrick"
+			npm install hexo-cli -g
+			npm install
 
-			- name: Deploy
+		- name: Deploy
 
-			run: |
-				hexo clean
-				hexo generate
-				hexo deploy
+		run: |
+			hexo clean
+			hexo generate
+			hexo deploy
 ```
 
 ## but，速度好慢
