@@ -30,18 +30,61 @@ pbcopy < ~/.ssh/id_rsa
 Settings -> add Scerets -> add Deploy keys
 ```
 
-## Hexo + Coding Page + Github
+## Miniprogram + Github Actions
 
 ```
-name: Hexo Deploy
+name: dev_upload
+
 on:
     push:
         branches:
             - develop
 jobs:
-	build:
+    build:
+    	runs-on: ubuntu-latest
+
+        strategy:
+        	matrix:
+                node-version: [10.x]
+
+        steps:
+        	- uses: actions/checkout@v2
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: install Dependencies
+              run: npm i
+
+            - name: build weapp
+              run: npm run build:mp-weixin
+
+            # see Project/Settings/Secrets
+            - name: generate pkp
+              run: echo "$UPLOAD_PRIVATE_KEY" > private.key
+              env:
+                  UPLOAD_PRIVATE_KEY: ${{ secrets.UPLOAD_PRIVATE_KEY }}
+
+            - name: upload
+              run: npx mp-ci upload ./dist/build/mp-weixin --pkp=./private.key
+
+```
+
+## Hexo + Coding Page + Github
+
+```
+name: Hexo Deploy
+on:
+	push:
+        branches:
+            - develop
+jobs:
+    build:
 		runs-on: ubuntu-latest
+
 		if: github.event.repository.owner.id == github.event.sender.id
+
 		steps:
 			- name: Checkout source
 			uses: actions/checkout@v2
@@ -73,47 +116,6 @@ jobs:
 				hexo clean
 				hexo generate
 				hexo deploy
-```
-
-## Miniprogram + Github Actions
-
-```
-name: dev_upload
-
-on:
-    push:
-        branches:
-            - develop
-jobs:
-    build:
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [10.x]
-
-        steps:
-            - uses: actions/checkout@v2
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: install Dependencies
-              run: npm i
-
-            - name: build weapp
-              run: npm run build:mp-weixin
-
-            # see Project/Settings/Secrets
-            - name: generate pkp
-              run: echo "$UPLOAD_PRIVATE_KEY" > private.key
-              env:
-                  UPLOAD_PRIVATE_KEY: ${{ secrets.UPLOAD_PRIVATE_KEY }}
-
-            - name: upload
-              run: npx mp-ci upload ./dist/build/mp-weixin --pkp=./private.key
-
 ```
 
 ## but，速度好慢
