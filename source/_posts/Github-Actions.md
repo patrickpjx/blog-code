@@ -4,9 +4,7 @@ date: 2021-03-11 12:22:35
 tags:
 ---
 
-## what is SSH
-
-Secure Shell（安全外壳协议，简称 SSH）是一种加密的网络传输协议，可在不安全的网络中为网络服务提供安全的传输环境。（两种方式）
+## in Mac to get SSH_KEY
 
 ```
 ssh-keygen [-q] [-b bits] [-t type] [-N new_passphrase] [-C comment] [-f output_keyfile]
@@ -17,8 +15,6 @@ ssh-keygen [-q] [-b bits] [-t type] [-N new_passphrase] [-C comment] [-f output_
 	-C：指定秘钥公钥对的说明信息
 	-f：指定生成密钥的目录和文件名，不指定会在生成过程中要求输入。
 ```
-
-in Mac to get SSH_KEY:
 
 ```
 pbcopy < ~/.ssh/id_rsa
@@ -99,7 +95,7 @@ jobs:
 		- name: Setup Hexo
 		env:
 			ACTION_DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_KEY }}
-		run: |
+		run: |ra
 			mkdir -p ~/.ssh/
 			echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
 			chmod 700 ~/.ssh
