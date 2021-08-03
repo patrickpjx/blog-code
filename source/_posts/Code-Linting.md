@@ -14,6 +14,11 @@ https://github.com/AlloyTeam/eslint-config-alloy
 https://github.com/yyx990803/yorkie
 
 ```
+// first
+node bin/install.js
+```
+
+```
   // package.json
 
   "gitHooks": {
