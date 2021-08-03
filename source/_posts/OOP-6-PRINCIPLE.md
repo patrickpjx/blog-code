@@ -1,21 +1,27 @@
 ---
-title: OCP、SRP、LSP、DIP、ISP、LOD、CARP
+title: SOLID
 date: 2020-10-12 14:52:21
 tags:
 ---
 
-#### OCP（open close principle）
-
-对扩展开放，对修改关闭，保证程序的扩展性，易于维护和升级
 
 #### SRP (single respornsibilitiy principle)
 
 单一指责，一个类负责一件事
 
+#### OCP（open close principle）
+
+对扩展开放，对修改关闭，保证程序的扩展性，易于维护和升级
+
 #### LSP (liskov substitution principle)
 
 派生类（子类）对象可以在程序中代替其基类（超类）对象
 [相关讨论](https://www.zhihu.com/question/27191817/answer/145013324) 1.抽象类，接口不能实例化，程序中子类运行就是对接口，抽象类替换的一种表现 2.保证继承关系，应遵循父定义定义规则
+
+```
+当子类覆盖或实现父类的方法时，方法的前置条件（即方法的形参）要比父类方法的输入参数更宽松。
+当子类的方法实现父类的抽象方法时，方法的后置条件（即方法的返回值）要比父类更严格。
+```
 
 #### DIP (dependence inversion principle)
 
