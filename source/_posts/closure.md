@@ -12,30 +12,13 @@ what: This means the language supports passing functions as arguments to other f
 
 why: First-class functions are a necessity for the functional programming style, in which the use of higher-order functions is a standard practice. A simple example of a higher-ordered function is the map function, which takes, as its arguments, a function and a list, and returns the list formed by applying the function to each member of the list. For a language to support map, it must support passing a function as an argument.
 
-###### lexically scoped
+函数可以作为形参、返回值、赋值变量（函数一等公民）是函数式编程（FP）的必要条件
 
-Lexical scope vs. dynamic scope
-
-```
-$ # bash language
-$ x=1
-$ function g () { echo $x ; x=2 ; }
-$ function f () { local x=3 ; g ; }
-$ f # does this print 1, or 3?
-3
-$ echo $x # does this print 1, or 2?
-1
-
-```
-
-Lexical scope: prints 1 and then 2
-Dynamic scope: prints 3 and then 1
-
-###### funarg problem
+###### funarg problem（函数式实参问题）
 
 In computer science, the funarg problem refers to the difficulty in implementing first-class functions (functions as first-class objects) in programming language implementations so as to use stack-based memory allocation of the functions
 
-###### downwards funarg problem
+###### downwards funarg problem（判断绑定的正确环境时的歧义性？创建时 : 调用时）
 
 ```
 
@@ -52,7 +35,26 @@ bar(foo);
 
 ```
 
-###### upwards funarg problem
+作为参数时，判断正确的环境
+
+###### scoped(动态作用域vs静态(词法)作用域)
+
+```
+$ # bash language
+$ x=1
+$ function g () { echo $x ; x=2 ; }
+$ function f () { local x=3 ; g ; }
+$ f # does this print 1, or 3?
+3
+$ echo $x # does this print 1, or 2?
+1
+
+```
+
+Lexical scope: prints 1 and then 2
+Dynamic scope: prints 3 and then 1
+
+###### upwards funarg problem（作为返回值时，判断正确的环境）
 
 upwards funarg problem
 
@@ -73,8 +75,10 @@ let bar = foo();
 bar(); // 10，而不是20!
 
 ```
+此时闭包保证词法环境得以保留，获得访问外部变量的能力
+函数表达式每次运行时求值时都会创建一个闭包
 
-###### closure
+###### closure（函数与他相关联的环境）
 
 In programming languages, a closure, also lexical closure or function closure, is a technique for implementing lexically scoped name binding in a language with first-class functions
 
