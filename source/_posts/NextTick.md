@@ -22,6 +22,10 @@ Vue 在内部对异步队列尝试使用原生的 Promise.then、MutationObserve
 任务一直执行到完成，不能被其他任务抢断
 ```
 
+## call stack、task queue
+
+同步任务->微任务队列->任务(消息)队列（处理异步、请求回调函数加入任务队列）
+
 ### task
 
 script 整体代码,setTimeout,setInterval,setImmediate,requestAnimationFrame,UI rendeing,nodeJS 中的 I/O
