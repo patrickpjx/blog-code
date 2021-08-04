@@ -4,7 +4,6 @@ date: 2020-10-12 14:52:21
 tags:
 ---
 
-
 #### SRP (single respornsibilitiy principle)
 
 单一指责，一个类负责一件事
