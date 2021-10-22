@@ -33,17 +33,6 @@ ack ->
 
 （三次挥手不能结束报文处理释放资源）
 
-## 全双工
-
-双向同时实时通信
-
-## 重传、拥塞控制、滑动窗口
-
-RTT: 往返时延
-RTO: 超时时间
-超时重传、快速重传
-拥塞控制：慢启动、拥塞避免、拥塞发生、快速恢复
-
 ## scoket 套接字（调用 tcp 的接口）
 
 源端口号和目的端口号。
@@ -52,6 +41,7 @@ TCP 用主机的 IP 地址加上主机上的端口号作为 TCP 连接的端点�
 
 scoket 隔离
 ip address + tcp/ip + ip port
+192.x.x.x : 8888
 
 ## 网络链路层、物理层
 
@@ -61,14 +51,29 @@ ip address + tcp/ip + ip port
 
 1.0:队头阻塞、无多路复用
 1.1:长链接、keeplive、pipelining（还是按请求顺序响应返回）、缓存处理（强缓存、协商缓存、启发式缓存）
-2.0:二进制分帧、encoder 压缩头部
+2.0:二进制分帧（有流控）、encoder 压缩头部
 3.0:quic 协议基于 udp
 
-发生丢包时有可能 2.0 比 1.1 还慢
+发生丢包时有可能 2.0 比 1.1 还慢（多路复用，丢包重传影响整个一条 tcp 链接）
 1.x 无状态协议
-2.0 其实是有状态的
+2.0 其实是有状态的（）
 
 区分后端服务状态和协议本身状态
+
+## http 缓存策略
+
+强缓存:chace-control(提供多字段，如 private、no-store、max-age) >> Expire（单纯 c/s 时间比对，1.0 的产物向下兼容）
+协商缓存:last-modified（单纯服务器时间比对，但无法精准（秒内多次修改），etag（解决修改时间替换，文件没修改情况、Etag 的生成过程需要服务器额外付出开销，会影响服务端的性能，这是它的弊端）
+
+```
+etag: '5c20abbd-e2e8'
+last-modified: Mon, 24 Dec 2018 09:49:49 GMT
+-->
+if-none-matched: '5c20abbd-e2e8'
+if-modified-since: Mon, 24 Dec 2018 09:49:49 GMT
+```
+
+-- 缓存穿透、缓存雪崩（没资源，或者请求数据大量到期）
 
 ## ssh、ssl/tsl、https
 
@@ -89,20 +94,6 @@ websocket 是协议、可类比 socket、但不是同一样东西
 http: 保留 tcp 链接一段时间（1.1），复用 tcp 链接
 tcp:这个 keepalive 是一种检测 TCP 链接状况的保险措施，它会每隔一定的时间就去 client 发送个数据，通过 client 端的反应来采取相应的措施,保活措施
 
-## http 缓存策略
-
-强缓存:chace-control(提供多字段，如 private、no-store、max-age) >> Expire（单纯 c/s 时间比对，1.0 的产物向下兼容）
-协商缓存:last-modified（单纯服务器时间比对，但无法精准（秒内多次修改），etag（解决修改时间替换，文件没修改情况））
-
-```
-etag: '5c20abbd-e2e8'
-last-modified: Mon, 24 Dec 2018 09:49:49 GMT
--->
-if-none-matched: '5c20abbd-e2e8'
-if-modified-since: Mon, 24 Dec 2018 09:49:49 GMT
-```
-
--- 缓存穿透、缓存雪崩（没资源，或者请求数据大量到期）
 
 ## Cookie Session/Session Storage Token LocalStorage
 
@@ -115,3 +106,10 @@ Token 双方比对校验 无需保存状态
 LocalStorage 客户端本地存储
 
 sessionStorage 会话本地存储，会话结束就删除，临时保存
+
+## 重传、拥塞控制、滑动窗口
+
+RTT: 往返时延
+RTO: 超时时间
+超时重传、快速重传
+拥塞控制：慢启动、拥塞避免、拥塞发生、快速恢复
