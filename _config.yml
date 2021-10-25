@@ -13,8 +13,8 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://www.patrickpjx.fun
-root: http://www.patrickpjx.fun/
+url: http://serverless-page-bucket-ebw28wmz-1303756934.cos-website.ap-hongkong.myqcloud.com
+root: http://serverless-page-bucket-ebw28wmz-1303756934.cos-website.ap-hongkong.myqcloud.com/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
