@@ -12,7 +12,7 @@ what: This means the language supports passing functions as arguments to other f
 
 why: First-class functions are a necessity for the functional programming style, in which the use of higher-order functions is a standard practice. A simple example of a higher-ordered function is the map function, which takes, as its arguments, a function and a list, and returns the list formed by applying the function to each member of the list. For a language to support map, it must support passing a function as an argument.
 
-函数可以作为形参、返回值、赋值变量（函数一等公民）是函数式编程（FP）的必要条件
+函数可以作为形参、返回值、赋值变量（函数一等公民）是函数式编程（FP）的必要条件。
 
 ###### funarg problem（函数式实参问题）
 

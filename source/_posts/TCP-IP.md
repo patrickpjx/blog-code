@@ -89,11 +89,16 @@ websocket 是协议、可类比 socket、但不是同一样东西
 所以说 WebSocket 并不是一个什么神奇的东西，它就是一个套接字。同时，WebSocket 得借助于现有的网络基础，如果它再从头搞一套建立连接的标准代价就会很大。
 在它之前能够和服务连接的就只有 http 请求，所以它得借助于 http 请求来建立一个原生的 socket 连接，因此才有了协议转换的那些东西。
 
+## websoket
+
+四种状态：1.opening 2.opened 3.closing 4.closed 两种指令 send Message 、close 链接
+双向通信长链接 基于 tcp 长链接 底层全双工
+建立连接协议 ws 开头或者 wss 开头
+
 ## keep-alive、tcp 和 http 区别
 
 http: 保留 tcp 链接一段时间（1.1），复用 tcp 链接
 tcp:这个 keepalive 是一种检测 TCP 链接状况的保险措施，它会每隔一定的时间就去 client 发送个数据，通过 client 端的反应来采取相应的措施,保活措施
-
 
 ## Cookie Session/Session Storage Token LocalStorage
 
