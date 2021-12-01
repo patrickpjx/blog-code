@@ -7,5 +7,4 @@ if (!Array.isArray) {
     _isArray = Array.isArray;
 }
 let isArray = _isArray;
-
-module.exports = _isArray;
+export default isArray
