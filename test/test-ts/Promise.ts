@@ -29,7 +29,7 @@ class myPromise {
         if (isThenable(value)) {
             return value;
         }
-        return new Promise((resolve, reject) => {
+        return new myPromise((resolve, reject) => {
             if (isThenable(value)) {
                 value.then((value) => resolve(value), (reason) => reject(reason))
             } else {
@@ -40,20 +40,20 @@ class myPromise {
     }
 
     public static reject(reason) {
-        return new Promise((resolve, reject) => reject(reason));
+        return new myPromise((resolve, reject) => reject(reason));
     }
 
     public static all(promises) {
         const resultValues = [];
         if (promises.length === 0) {
-            return Promise.resolve(resultValues);
+            return myPromise.resolve(resultValues);
         }
 
         let completedCount = 0;
-        return new Promise((resolve, reject) => {
+        return new myPromise((resolve, reject) => {
             Array.from(promises).forEach((promise, index) => {
                 if (!isThenable(promise)) {
-                    promise = Promise.resolve(promise);
+                    promise = myPromise.resolve(promise);
                 }
                 (promise as any).then(
                     (value) => {
@@ -73,13 +73,13 @@ class myPromise {
     public static allRejected(promises) {
         const rejectValues = []
         if (promises.length === 0) {
-            return Promise.reject(rejectValues)
+            return myPromise.reject(rejectValues)
         }
         let rejectedCount = 0;
-        return new Promise((resolve, reject) => {
+        return new myPromise((resolve, reject) => {
             Array.from(promises).forEach((promise, index) => {
                 if (!isThenable(promise)) {
-                    promise = Promise.reject(promise);
+                    promise = myPromise.reject(promise);
                 }
                 (promise as any).then(
                     (value) => { resolve(value) },
