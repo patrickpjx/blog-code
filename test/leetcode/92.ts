@@ -4,55 +4,60 @@
  * [92] 设计链表
  */
 
-
-// export class ListNode {
-//     constructor(public element, public next?: ListNode) { }
-// }
+export class ListNode {
+	public element = null;
+	public next?: ListNode = null;
+	public constructor(element, next?: ListNode) {
+		this.element = element;
+		this.next = next;
+	}
+}
 
 function reverseBetween(head: ListNode | null, left: number, right: number): ListNode | null {
-    if (head == null) {
-        return null;
-    }
-    let startNode = head;
-    let endNode = head;
-    let leftNode = head;
+	if (head === null) {
+		return null;
+	}
+	let startNode = head;
+	let endNode = head;
+	let leftNode = head;
 
-    for (let i = 0; i < right - 1; i++) {
-        if (!endNode) {
-            return head;
-        }
-        if (i < left - 1) {
-            leftNode = endNode.next;
-            startNode = endNode;
-        }
-        endNode = endNode.next;
-    }
+	for (let i = 0; i < right - 1; i++) {
+		if (!endNode) {
+			return head;
+		}
+		if (i < left - 1) {
+			leftNode = endNode.next;
+			startNode = endNode;
+		}
+		endNode = endNode.next;
+	}
 
-    const reverseList = (head) => {
-        let current = head;
-        let prev = endNode.next || null;
-        let next = null;
-        for (let i = 0; i < right - left + 1; i++) {
-            next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
-        }
-        return prev;
-    }
+	const reverseList = (head) => {
+		let current = head;
+		let prev = endNode.next || null;
+		let next = null;
+		for (let i = 0; i < right - left + 1; i++) {
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+		return prev;
+	};
 
-    if (left == 1) {
-        return reverseList(leftNode);
-    }
+	if (left === 1) {
+		return reverseList(leftNode);
+	}
 
-    if (left === right) {
-        return head;
-    }
+	if (left === right) {
+		return head;
+	}
 
-    startNode.next = reverseList(leftNode);
-    return head;
-};
+	startNode.next = reverseList(leftNode);
+	return head;
+}
 
+// TEST CODE
 // (function (arr) {
 //     let currnet = null;
 //     let head = null;
@@ -80,4 +85,3 @@ function reverseBetween(head: ListNode | null, left: number, right: number): Lis
 
 //     string(h);
 // })([5])
-
