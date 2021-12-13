@@ -3,6 +3,25 @@ title: Closure
 date: 2020-07-21 10:58:14
 tags:
 ---
+###### closure（函数与他相关联的环境）
+
+In programming languages, a closure, also lexical closure or function closure, is a technique for implementing lexically scoped name binding in a language with first-class functions
+
+what: a technique
+why: funarg problem
+How: Unlike a plain function, a closure allows the function to access those captured variables through the closure's copies of their values or references, even when the function is invoked outside their scope
+
+function foo() {
+var a = { x: 1, y: 2 }; // 对象
+var b = 10; // 基本数据类型
+function bar(param) {
+return param+ b;
+}
+return bar;
+}
+var b = 20;
+var func = foo();
+console.log(func(1));
 
 ###### first class funtion
 
@@ -35,8 +54,6 @@ bar(foo);
 
 ```
 
-作为参数时，判断正确的环境
-
 ###### scoped(动态作用域vs静态(词法)作用域)
 
 ```
@@ -55,8 +72,6 @@ Lexical scope: prints 1 and then 2
 Dynamic scope: prints 3 and then 1
 
 ###### upwards funarg problem（作为返回值时，判断正确的环境）
-
-upwards funarg problem
 
 ```
 
@@ -77,23 +92,3 @@ bar(); // 10，而不是20!
 ```
 此时闭包保证词法环境得以保留，获得访问外部变量的能力
 函数表达式每次运行时求值时都会创建一个闭包
-
-###### closure（函数与他相关联的环境）
-
-In programming languages, a closure, also lexical closure or function closure, is a technique for implementing lexically scoped name binding in a language with first-class functions
-
-what: a technique
-why: funarg problem
-How: Unlike a plain function, a closure allows the function to access those captured variables through the closure's copies of their values or references, even when the function is invoked outside their scope
-
-function foo() {
-var a = { x: 1, y: 2 }; // 对象
-var b = 10; // 基本数据类型
-function bar(param) {
-return param+ b;
-}
-return bar;
-}
-var b = 20;
-var func = foo();
-console.log(func(1));
