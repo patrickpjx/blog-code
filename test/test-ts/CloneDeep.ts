@@ -1,3 +1,4 @@
+import { type } from "os";
 import isObject from "./isObject";
 // Map和Object的区别
 // 一个Object 的键只能是字符串或者 Symbols，但一个Map 的键可以是任意值。
@@ -32,11 +33,11 @@ export default function cloneDeep(obj) {
             Reflect.setPrototypeOf(cloneObj, Reflect.getPrototypeOf(obj));
         } else {
             cloneObj = new Constructor();
+            for (const [key, value] of Object.entries(obj)) {
+                cloneObj[key] = clone(value);
+            }
         }
         nMap.set(cloneObj, obj);
-        for (const [key, value] of Object.entries(obj)) {
-            cloneObj[key] = clone(value);
-        }
         return cloneObj;
     }
     return clone(obj)

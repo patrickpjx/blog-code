@@ -52,6 +52,5 @@ function myBind(fn, thisArg, ...boundArgs) {
             value: Math.max(fn.length - boundArgs.length, 0),
         },
     });
-
     return boundFn;
 }

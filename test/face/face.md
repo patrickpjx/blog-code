@@ -71,6 +71,7 @@ number stirng bigint boolean symbol null undefined object
 // 箭头函数和非箭头函数有什么区别？（这个我会）
 // Object.entries() 和 Array.prototype.entries()(迭代) 区别
 // Set 与 Map
+// typescript 函数重载与真重载
 
 <!-- 讲一下 http 协议。
 讲一下 http 请求常用的头，比如和缓存相关的头，以及其他的。
@@ -95,5 +96,3 @@ js 中的异步有哪些？（只知道 setTimeout）
 写代码：递归实现数组求和？
 TCP 如何保障数据包有效
 那你讲一下树的遍历吧。 -->
-<!-- 你了解的 MVVM 框架有哪些？（什么是 MVVM 框架……） -->
-<!-- Vue 的生命周期有了解吗？（不了解 Vue，了解 React） -->

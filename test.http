@@ -1,0 +1,53 @@
+@url = https://dev.jwetech.com:7023
+# @user-agent = Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1;
+
+###
+# @name gm
+GET {{url}}/m/gm HTTP/1.1
+content-type: application/json
+
+# ###
+# # @name getToken
+# POST {{url}}/api/authorizations HTTP/1.1
+# user-agent: {{user-agent}}
+# content-type: application/json
+
+# {
+#   "provider": "webtest",
+#   "data": {
+#       "code": "1234"
+#   }
+# }
+
+# ###
+# @token = {{getToken.response.body.token}}
+# @Authorization = Bearer {{token}}
+# @id ={{getToken.response.body.id}}
+
+# ###
+# # @name getConfig
+# GET {{url}}/api/configs HTTP/1.1
+# user-agent: {{user-agent}}
+# content-type: application/json
+# Authorization:{{Authorization}}
+
+# ###
+# # @name getMessages
+# GET {{url}}/api/messages HTTP/1.1
+# Authorization:{{Authorization}}
+
+
+# ###
+# # @name getPets
+# PUT {{url}}/api/users/pets HTTP/1.1
+# Authorization:{{Authorization}}
+
+# ###
+# # @name getSelf
+# PUT {{url}}/api/users/profile HTTP/1.1
+# Authorization:{{Authorization}}
+
+# ###
+# # @name getUsers
+# GET {{url}}/api/users/{{id}} HTTP/1.1
+# Authorization:{{Authorization}}
