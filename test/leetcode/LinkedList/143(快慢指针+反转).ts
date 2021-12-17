@@ -16,44 +16,43 @@
  *     }
  * }
  */
-
+import { ListNode } from './206(反转)';
 /**
  Do not return anything, modify head in-place instead.
  */
 function reorderList(head: ListNode | null): void {
-    if (head === null) return;
-    let slow = head;
-    let fast = head;
-    while (fast?.next?.next) {
-        fast = fast.next.next;
-        slow = slow.next;
-    }
-    let halfMiddleHead = reverseList(slow.next);
-    slow.next = null;
-    let current = head;
-    let next = null;
-    while (current && halfMiddleHead) {
-        next = current.next;
-        current.next = halfMiddleHead;
-        halfMiddleHead = halfMiddleHead.next;
-        current.next.next = next;
-        current = next;
-    }
-};
+	if (head === null) return;
+	let slow = head;
+	let fast = head;
+	while (fast?.next?.next) {
+		fast = fast.next.next;
+		slow = slow.next;
+	}
+	let halfMiddleHead = reverseList(slow.next);
+	slow.next = null;
+	let current = head;
+	let next = null;
+	while (current && halfMiddleHead) {
+		next = current.next;
+		current.next = halfMiddleHead;
+		halfMiddleHead = halfMiddleHead.next;
+		current.next.next = next;
+		current = next;
+	}
+}
 
-
-function reverseList(head:ListNode| null):ListNode| null {
-    if (head === null) return head;
-    let current = head;
-    let prev = null;
-    let next = null;
-    while (current) {
-        next = current.next;
-        current.next = prev;
-        prev = current;
-        current = next;
-    }
-    return prev;
+function reverseList(head: ListNode | null): ListNode | null {
+	if (head === null) return head;
+	let current = head;
+	let prev = null;
+	let next = null;
+	while (current) {
+		next = current.next;
+		current.next = prev;
+		prev = current;
+		current = next;
+	}
+	return prev;
 }
 // @lc code=end
 
@@ -72,7 +71,7 @@ function reverseList(head:ListNode| null):ListNode| null {
 
 // 输入：head = [1,2,3,4,5]
 // 输出：[1,5,2,4,3]
- 
+
 // 提示：
 // 链表的长度范围为 [1, 5 * 104]
 // 1 <= node.val <= 1000

@@ -4,7 +4,7 @@
  * [141] 环形链表
  */
 
-import { ListNode } from "./206";
+import { ListNode } from './206';
 
 // @lc code=start
 /**
@@ -20,21 +20,21 @@ import { ListNode } from "./206";
  */
 
 function hasCycle(head: ListNode | null): boolean {
-    if (head === null) return false;
-    if (head.next === null) return false;
-    let fast = head;
-    let slow = new ListNode(0,head);
-    let result = false;
-    while (fast?.next && !result) {
-        if (fast === slow) {
-            result = true;
-            return true;
-        }
-        fast = fast.next.next
-        slow = slow.next;
-    }
-    return false;
-};
+	if (head === null) return false;
+	if (head.next === null) return false;
+	let fast = head;
+	let slow = new ListNode(0, head);
+	let result = false;
+	while (fast?.next && !result) {
+		if (fast === slow) {
+			result = true;
+			return true;
+		}
+		fast = fast.next.next;
+		slow = slow.next;
+	}
+	return false;
+}
 
 // @lc code=end
 
@@ -49,8 +49,6 @@ function hasCycle(head: ListNode | null): boolean {
 // 输出：true
 // 解释：链表中有一个环，其尾部连接到第二个节点。
 
-
-
 // 示例 2：
 // 输入：head = [1,2], pos = 0
 // 输出：true
@@ -60,12 +58,10 @@ function hasCycle(head: ListNode | null): boolean {
 // 输入：head = [1], pos = -1
 // 输出：false
 // 解释：链表中没有环。
- 
 
 // 提示：
 // 链表中节点的数目范围是 [0, 104]
 // -105 <= Node.val <= 105
 // pos 为 -1 或者链表中的一个 有效索引 。
- 
 
 // 进阶：你能用 O(1)（即，常量）内存解决此问题吗？

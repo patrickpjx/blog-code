@@ -31,33 +31,36 @@
  * }
  */
 
-// class TreeNode {
-//     val: number
-//     left: TreeNode | null
-//     right: TreeNode | null
-//     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
-//         this.val = (val===undefined ? 0 : val)
-//         this.left = (left===undefined ? null : left)
-//         this.right = (right===undefined ? null : right)
-//     }
-// }
-function sortedListToBST(head: ListNode | null): TreeNode | null {
-    if (head === null) return null;
-    return insertTree(head,null);
-};
+class TreeNode {
+	val: number;
+	left: TreeNode | null;
+	right: TreeNode | null;
+	constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+		this.val = val === undefined ? 0 : val;
+		this.left = left === undefined ? null : left;
+		this.right = right === undefined ? null : right;
+	}
+}
 
-function insertTree(head: ListNode | null,tail):TreeNode| null {
-    if (head === tail) return null;
-    let fast = head;
-    let slow = head;
-    while (fast !== tail && fast.next !== tail) {
-        fast = fast.next.next;
-        slow = slow.next;
-    }
-    let root = new TreeNode(slow.val);
-    root.left = insertTree(head,slow);
-    root.right = insertTree(slow.next, tail);
-    return root;
+import { ListNode } from './206(反转)';
+
+function sortedListToBST(head: ListNode | null): TreeNode | null {
+	if (head === null) return null;
+	return insertTree(head, null);
+}
+
+function insertTree(head: ListNode | null, tail): TreeNode | null {
+	if (head === tail) return null;
+	let fast = head;
+	let slow = head;
+	while (fast !== tail && fast.next !== tail) {
+		fast = fast.next.next;
+		slow = slow.next;
+	}
+	let root = new TreeNode(slow.val);
+	root.left = insertTree(head, slow);
+	root.right = insertTree(slow.next, tail);
+	return root;
 }
 
 // @lc code=end
