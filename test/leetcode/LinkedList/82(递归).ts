@@ -16,7 +16,7 @@
  *     }
  * }
  */
-import { ListNode } from './206';
+import { ListNode } from './206(反转)';
 
 function deleteDuplicates(head: ListNode | null): ListNode | null {
 	if (head === null) return head;

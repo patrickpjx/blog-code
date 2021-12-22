@@ -25,7 +25,7 @@
 //         this.next = next;
 //     }
 // }
-import { ListNode } from './206';
+import { ListNode } from './206(反转)';
 
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
 	if (l1 === null && l2 === null) return null;

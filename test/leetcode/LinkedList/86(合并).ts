@@ -25,7 +25,7 @@
 //         this.next = next;
 //     }
 // }
-import { ListNode } from './206';
+import { ListNode } from './206(反转)';
 
 function partition(head: ListNode | null, x: number): ListNode | null {
 	if (head === null) return head;

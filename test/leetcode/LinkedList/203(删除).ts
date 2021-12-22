@@ -1,4 +1,4 @@
-import { ListNode } from './206';
+import { ListNode } from './206(反转)';
 
 function removeElements(head: ListNode | null, val: number): ListNode | null {
 	if (head === null) return head;

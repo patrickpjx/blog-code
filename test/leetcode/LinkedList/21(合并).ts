@@ -17,7 +17,7 @@
  * }
  */
 
-import { ListNode } from './206';
+import { ListNode } from './206(反转)';
 function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
 	if (list1 === null && list2 === null) return null;
 	if (list1 === null) return list2;
