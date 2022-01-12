@@ -1,3 +1,4 @@
 export default function isObject(obj) {
-    return typeof obj === 'object' && obj !== null;
+	const type = typeof obj;
+	return obj !== null && (type === 'object' || type === 'function');
 }
