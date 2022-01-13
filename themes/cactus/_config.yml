@@ -94,8 +94,16 @@ logo:
 #   - url: where the icon can be found
 #   - gravatar: whether to create a favicon from your Gravatar
 
-favicons:
-    -url: /images/favicon_io/favicon.ico
+favicon:
+    desktop:
+        url: /images/favicon_io/favicon.ico
+        gravatar: false
+    android:
+        url: /images/favicon_io/favicon-192x192.png
+        gravatar: false
+    apple:
+        url: /images/favicon_io/apple-touch-icon.png
+        gravatar: false
 
 # The color scheme that should be used to highlight codeblocks.
 # See source/css/_highlight for a list of all available color schemes.
