@@ -94,6 +94,8 @@ logo:
 #   - url: where the icon can be found
 #   - gravatar: whether to create a favicon from your Gravatar
 
+favicons: /images/favicon_io/favicon.ico
+
 # The color scheme that should be used to highlight codeblocks.
 # See source/css/_highlight for a list of all available color schemes.
 # highlight: rainbow
